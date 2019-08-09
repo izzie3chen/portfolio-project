@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html lang="en">
-  {% load staticfiles %}
+    {% load staticfiles %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +46,7 @@
                       <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link " href="http://twitter.com">Twitter</a>
                         <a class="nav-item nav-link" href="{% static '2.png' %}">Resume</a>
-                        <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                        <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
                         
                       </div>
                     </div>
@@ -55,37 +55,19 @@
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi I am Isaac</h1>
-      <p class="lead text-muted">This is my first django project</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Email me babe</a>
-        
-      </p>
-      <img src="{% static 'Naruto_newshot.png' %}" height=200 width=200 alt="">
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-          {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{job.image.url}}" alt="">
-            <div class="card-body">
-              <p class="card-text">{{job.summary}}</p>
-              
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+    <div class='container'>
+    <h1 class='text-center pt-3'>Welcome to Isaac's Blog</h1><br><br>
+    <h2>Latest Posts</h2>
+    <hr /> 
+    {% for blog in blogs.all %}
+    <a href="{% url 'detail' blog.id%}"> <h3>{{blog.title}}</h3> </a>
+    {{blog.pub_date_pretty}}
+    <br>
+    <img class="img-fluid" src="{{blog.image.url}}" height=200 width=200>
+    <br>
+    {{blog.summary}}
+    {% endfor %}
+</div>
 
 </main>
 
